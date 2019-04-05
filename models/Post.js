@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
           primaryKey: true
         },
         body: DataTypes.TEXT,
-        user_id: DataTypes.INTEGER,
+        userId: DataTypes.INTEGER,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
       }
