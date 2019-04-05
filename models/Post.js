@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Post = sequelize.define(
-      "Post",
+      "post",
       {
         id: {
           type: DataTypes.INTEGER,
@@ -11,21 +11,15 @@ module.exports = (sequelize, DataTypes) => {
         user_id: DataTypes.INTEGER,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
-      },
-      {
-        tableName: "users",
-        paranoid: true,
-        timestamps: true,
-        underscored: true
       }
     );
   
-    User.associate = (models) => {
-      models.Post.belongsTo(models.User, {
+    Post.associate = (models) => {
+      Post.belongsTo(models.User, {
         as: "user",
       });
     
-      models.Post.hasMany(models.Comment, {
+      Post.hasMany(models.Comment, {
         as: "comments",
       });
     }

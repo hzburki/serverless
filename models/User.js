@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define(
-      "User",
+      "user",
       {
         id: {
           type: DataTypes.INTEGER,
@@ -13,16 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         gender: DataTypes.STRING,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
-      },
-      {
-        tableName: "users",
-        timestamps: true,
       }
     );
   
     User.associate = (models) => {
-      models.User.hasMany(models.Posts, {
+      User.hasMany(models.Post, {
         as: "posts",
+      });
+
+      User.hasMany(models.Comment, {
+        as: "comments",
       });
     }
   
