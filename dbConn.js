@@ -5,9 +5,13 @@ const sequelize = new Sequelize(
     process.env.DB_USERNAME,
     process.env.DB_PASSWORD,
     {
+        ssl: true,
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: process.env.DB_DIALECT,
+        dialectOptions: {
+            ssl: 'Amazon RDS'
+        }
     }
 )
 
@@ -38,10 +42,15 @@ module.exports = async () => {
         return Models
     } 
 
-    // await sequelize.sync()
-    await sequelize.authenticate()
-    connection.isConnected = true
-    console.log("use new connection")
-    return Models
+    try {
+        // await sequelize.sync()
+        await sequelize.authenticate()
+        connection.isConnected = true
+        console.log("use new connection")
+        
+        return Models
+    } catch (error) {
+        console.log(`Connection Error: ${error}`)
+    }
 }
 
