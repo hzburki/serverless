@@ -1,6 +1,6 @@
 # Happy Coding!
 
-service: serverless-blog
+service: serverless-node
 
 provider:
   name: aws

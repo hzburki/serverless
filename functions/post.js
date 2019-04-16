@@ -68,4 +68,8 @@ app.post('/post', async (req, res) => {
     }
 })
 
-module.exports.index = serverless(app)
+module.exports.index = serverless(app, {
+    request: function (_, _, context) {
+        context.callbackWaitsForEmptyEventLoop = false;
+    },
+})
